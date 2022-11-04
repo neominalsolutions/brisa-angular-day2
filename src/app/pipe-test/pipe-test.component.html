@@ -1,0 +1,17 @@
+
+<!-- built-in angular pipe -->
+<p>shipAdrress {{order?.shipAdrress | uppercase}}</p>
+<p>Order total {{order?.total | number:'0.00' }}</p>
+<p>Order total {{order?.total | currency:'EUR' }}</p>
+<p>Order Date {{order?.orderDate | date:'dd/mm/YYYY hh:MM'}}</p>
+
+
+<select (change)="order.orderStatus = ($any($event.target).value)">
+  <option value="1001">1001</option>
+  <option value="1002">1002</option>
+  <option value="">1003</option>
+</select>
+
+order.orderStatus: {{order.orderStatus}}
+
+<p>Order Status {{order?.orderStatus | orderType}}</p>

@@ -9,6 +9,8 @@ import { UserInfoComponent } from './user-info/user-info.component';
 import { UsersComponent } from './users/users.component';
 import { HttpClientModule } from '@angular/common/http';
 import { UserDetailComponent } from './user-detail/user-detail.component';
+import { PipeTestComponent } from './pipe-test/pipe-test.component';
+import { OrderTypePipe } from './order-type.pipe';
 
 // not httpClient service ile çalışabilmek için HttpClientModule AppModule import ediyoruz. Bu sayade component içinden HttpClient service erişebiliriz.
 
@@ -20,6 +22,8 @@ import { UserDetailComponent } from './user-detail/user-detail.component';
     UserInfoComponent,
     UsersComponent,
     UserDetailComponent,
+    PipeTestComponent,
+    OrderTypePipe,
   ],
   imports: [
     BrowserModule,
