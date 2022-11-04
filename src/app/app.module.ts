@@ -6,7 +6,10 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { UserInfoComponent } from './user-info/user-info.component';
+import { UsersComponent } from './users/users.component';
+import { HttpClientModule } from '@angular/common/http';
 
+// not httpClient service ile çalışabilmek için HttpClientModule AppModule import ediyoruz. Bu sayade component içinden HttpClient service erişebiliriz.
 
 @NgModule({
   declarations: [
@@ -14,10 +17,12 @@ import { UserInfoComponent } from './user-info/user-info.component';
     HomeComponent,
     AboutComponent,
     UserInfoComponent,
+    UsersComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
