@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
-import { catchError, filter, map, of, tap } from 'rxjs';
+import { catchError, filter, map, Observable, of, tap } from 'rxjs';
+import { UserService } from '../user.service';
 
 @Component({
   templateUrl: './users.component.html',
@@ -11,7 +12,7 @@ export class UsersComponent implements OnInit, OnDestroy {
   // private http:HttpClient bu service ile uzak makinadan bir request de bulunabiliriz. (httpget,httpost,httput,httpatch,httpdelete)
   // fetch yerine kullanıyoruz.
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient, private userService:UserService) { }
   ngOnDestroy(): void {
     // component HTML domdan kaldırılınca çalışır.
     // arka planda çalışan kodları temizleriz.
@@ -23,16 +24,33 @@ export class UsersComponent implements OnInit, OnDestroy {
 
   // undefined herhangi bir atama yapılmamış bir object array tanımladık
   users!: any[];
+  users$!:Observable<any[]>;
 
   ngOnInit(): void {
     // this.fetchSample();
+    //this.httpRxJs();
+    //this.httpClientPromise();
+    
+    // Doğru kullanım.
 
-    this.http.get('https://jsonplaceholder.typicode.com/users').pipe(
-      map(data => console.log('map')), 
-      tap(data => console.log('tap')),
-      catchError(err =>  of(err))
-    );
+    // 1. kullanım şekli subscribe ile
+    // 2. kullanım şekli async operatör ile
 
+    // 1.yöntem
+    // veri olduğu gibi ekrana basılacak ise tercih edilir.
+    this.users$ = this.userService.getAllUsers();
+
+    // 2. yöntem
+    // veri üzerinde oynama durumu varsa tercih edilir.
+    this.userService.getAllUsers().subscribe((data:any) => {
+      this.users = data;
+    })
+
+
+  
+  }
+
+  httpRxJs(){
     this.http.get('https://jsonplaceholder.typicode.com/users').subscribe(
       {
       next:(data:any)=> {
@@ -49,7 +67,6 @@ export class UsersComponent implements OnInit, OnDestroy {
       }
       
       });
-  
   }
 
   httpClientPromise(){

@@ -1,5 +1,28 @@
 <p>users works!</p>
 
+
+
+
+<h1>1. Yöntem</h1>
+
+<!-- 1.yöntem ile ekrana basma -->
+<ul>
+  <li *ngFor="let user of users$ | async">
+    <a routerLink="/user-detail/{{user?.id}}">{{user?.name}} 
+    </a>
+
+    <!-- genelde tercih edilen yazım şekli -->
+    <a [routerLink]="['/user-detail',user?.id]">{{user?.name}} 
+    </a>
+    
+  </li>
+</ul>
+
+<hr>
+<h1>2. Yöntem</h1>
+
+<!-- 2. yöntem ile ekrana basma -->
+
 <ul>
   <li *ngFor="let user of users">
     {{user?.name}} 

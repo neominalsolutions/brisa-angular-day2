@@ -8,6 +8,7 @@ import { AboutComponent } from './about/about.component';
 import { UserInfoComponent } from './user-info/user-info.component';
 import { UsersComponent } from './users/users.component';
 import { HttpClientModule } from '@angular/common/http';
+import { UserDetailComponent } from './user-detail/user-detail.component';
 
 // not httpClient service ile çalışabilmek için HttpClientModule AppModule import ediyoruz. Bu sayade component içinden HttpClient service erişebiliriz.
 
@@ -18,6 +19,7 @@ import { HttpClientModule } from '@angular/common/http';
     AboutComponent,
     UserInfoComponent,
     UsersComponent,
+    UserDetailComponent,
   ],
   imports: [
     BrowserModule,
